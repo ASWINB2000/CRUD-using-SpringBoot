@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- your head content -->
+</head>
+<body>
+  <div class="contain">
+    <form th:action="@{/save}" th:object="${student}" method="post">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" th:field="*{name}" id="name">
+        <!-- Display validation error (if any) -->
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+      </div>
+      <div class="mb-3">
+        <label for="cource" class="form-label">Course</label>
+        <input type="text" class="form-control" th:field="*{cource}" id="cource">
+        <!-- Display validation error (if any) -->
+        <span th:if="${#fields.hasErrors('cource')}" th:errors="*{cource}" class="text-danger"></span>
+      </div>
+      <div class="mb-3">
+        <label for="fee" class="form-label">Fee</label>
+        <input type="number" class="form-control" th:field="*{fee}" id="fee">
+        <!-- Display validation error (if any) -->
+        <span th:if="${#fields.hasErrors('fee')}" th:errors="*{fee}" class="text-danger"></span>
+      </div>
+      
+      <!-- Add a hidden field for id to identify the student being edited -->
+      <input type="hidden" th:field="*{id}" />
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
